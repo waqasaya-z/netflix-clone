@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto_Slab } from 'next/font/google'
+import Navbar from './components/Navbar'
 
 const roboto = Roboto_Slab({ subsets: ['latin'] })
 
@@ -16,7 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <Navbar username='waqas@email.com' />
+        <main>
+        {children}
+        </main>
+        </body>
     </html>
+
   )
 }
