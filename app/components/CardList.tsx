@@ -1,27 +1,46 @@
-'use client'
+"use client";
 import Image from "next/image";
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
+interface YouTubeVideoItem {
+  snippet: {
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+    title: string;
+  };
+}
 
 const CardList = async () => {
- const res = await import("@/data.json");
-  const data = res.items;
+  // const res = await import("@/data.json");
+  // const data = res.items;
 
+  const api = process.env.YOUTUBE_API;
 
-  const slideLeft = () => {
-    var slider = document.getElementById('slider')
-    slider!.scrollLeft = slider!.scrollLeft - 500
-  }
+  const response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=disney%20trailer&key=${api}`);
+  const data = await response.json();
+  const items: YouTubeVideoItem[] = data.items
 
-  const slideRight = () => {
-    var slider = document.getElementById('slider')
-    slider!.scrollLeft = slider!.scrollLeft + 500
-  }
+  // const slideLeft = () => {
+  //   var slider = document.getElementById('slider')
+  //   slider!.scrollLeft = slider!.scrollLeft - 500
+  // }
+
+  // const slideRight = () => {
+  //   var slider = document.getElementById('slider')
+  //   slider!.scrollLeft = slider!.scrollLeft + 500
+  // }
 
   return (
     <div className="flex items-center ">
-      <MdChevronLeft onClick={slideLeft} size={40} />
-      <div id="slider" className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scroll scrollbar-hide">
-        {data.map((item, index) => (
+      <MdChevronLeft size={40} />
+      <div
+        id="slider"
+        className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scroll scrollbar-hide"
+      >
+        {items.map((item,index) => (
           <div
             key={index}
             className="card inline-block p-2 bg-base-100 hover:scale-125 ease-in-out duration-300 cursor-pointer"
@@ -38,7 +57,7 @@ const CardList = async () => {
           </div>
         ))}
       </div>
-      <MdChevronRight onClick={slideRight} size={40} />
+      <MdChevronRight size={40} />
     </div>
   );
 };
