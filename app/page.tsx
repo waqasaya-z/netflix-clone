@@ -1,8 +1,14 @@
 import Banner from "./components/Banner";
 import titanic from "@/assets/titanic.jpg";
 import CardList from "./components/CardList";
+import { getPopularVideos, getVideos } from "@/hooks/getVideos";
 
-export default function Home() {
+export default async function Home() {
+
+ const comedy =  await getVideos({searchParams: 'comedy'})
+ const adventure =  await getVideos({searchParams: 'adventure'})
+ const fantasy =  await getVideos({searchParams: 'fantasy'})
+ const popular = await getPopularVideos()
 
   return (
     <main className="h-screen">
@@ -10,12 +16,10 @@ export default function Home() {
         <Banner title="Titanic" image={titanic} />
       </div>
       <div>
-        <h2> Adventure </h2>
-        <CardList />
-        <h2> Comedy </h2>
-        <CardList />
-        <h2> Fantasy </h2>
-        <CardList />
+        <CardList title="Popular" params={popular} />
+        <CardList title="Adventure" params={adventure} />
+        <CardList title="Comedy" params={comedy} />
+        <CardList title="Fantasy" params={fantasy} />
       </div>
     </main>
   );
