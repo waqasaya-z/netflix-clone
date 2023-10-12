@@ -5,11 +5,7 @@ import React from "react";
 import NetflixLogo from "@/assets/netflix.svg";
 import { useSession } from "next-auth/react";
 
-interface Props {
-  username: string;
-}
-
-const Navbar = ({ username }: Props) => {
+const Navbar = () => {
 
  const {status, data: session} = useSession();
 
@@ -23,19 +19,25 @@ const Navbar = ({ username }: Props) => {
         <Link href="/" className="btn btn-ghost normal-case text-lg ml-8">
           Home
         </Link>
+       {status === "authenticated" && 
         <Link href="/mylist" className="btn btn-ghost normal-case text-lg">
           My List
         </Link>
+        }
       </div>
       <div className="flex-none">
-      { status === "unauthenticated" ?   <Link className="text-white mr-10" href="/api/auth/signin"> Log in </Link> : 
+      { status === "unauthenticated" &&  <Link className="text-white mr-10" href="/api/auth/signin"> Log in </Link>}
+      { status === "authenticated" &&
        <ul className="menu menu-horizontal px-1 text-white">
           <li>
             <details>
               <summary>{session?.user?.email}</summary>
               <ul className="p-2 bg-base-100">
                 <li>
-                  <Link href="/api/auth/signout"> Sign Out </Link>
+                  <Link  className="text-black" href="/api/auth/signout"> Sign Out </Link>
+                </li>
+                <li>
+         <Link className="text-black" href='/pricing'> Plans </Link>
                 </li>
               </ul>
             </details>

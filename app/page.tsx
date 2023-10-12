@@ -2,6 +2,7 @@ import Banner from "./components/Banner";
 import titanic from "@/assets/titanic.jpg";
 import CardList from "./components/CardList";
 import { getPopularVideos, getVideos } from "@/hooks/getVideos";
+import Footer from "./components/Footer";
 
 export default async function Home() {
 
@@ -21,6 +22,7 @@ export default async function Home() {
         <CardList title="Comedy" params={comedy} />
         <CardList title="Fantasy" params={fantasy} />
       </div>
+      <Footer />
     </main>
   );
 }
