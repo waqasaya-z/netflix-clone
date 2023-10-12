@@ -2,8 +2,18 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+  interface Price {
+        id: string;
+        object: string;
+        active: boolean;
+        billing_scheme: string;
+        created: number;
+    }
+
+    type PriceArray = Price[];
+
 const ListPrice = () => {
-    const [prices,setPrices] = useState([]);
+    const [prices,setPrices] = useState<PriceArray>([]);
 
     useEffect(() => {
      fetchPrices()
@@ -14,6 +24,23 @@ const ListPrice = () => {
     setPrices(data)
     }
     console.log(prices)
+
+    const priceIds = prices.map(price => price.id);
+  
+    const handleSubscription =  async (e: any) => {
+     e.preventDefault()
+     const { data } = await axios.post('/api/payment',
+     {
+        priceId: 'price_1O0SdWK2n4aaWJXKzeTlCm2O'
+     },
+     {
+        headers: {
+            "Content-Type": "application/json",
+        }
+     }
+     )
+     window.location.assign(data)
+    }
 
   return (
     <section
@@ -106,8 +133,8 @@ const ListPrice = () => {
                       Use on multiple device
                    </p>
                 </div>
-                <a
-                   href="/"
+                <button 
+                onClick={handleSubscription}
                    className="
                    w-full
                    block
@@ -124,7 +151,7 @@ const ListPrice = () => {
                    "
                    >
                 Choose Basic
-                </a>
+                </button>
                 <div>
                    <span className="absolute right-0 top-7 z-[-1]">
                       <svg
