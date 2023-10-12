@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
 import Navbar from "./components/Navbar";
+import AuthProvider from "./auth/Provider";
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
 
@@ -18,9 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
+        <AuthProvider>
         <Navbar username="waqas@email.com" />
-
         <main>{children}</main>
+        </AuthProvider>
+
+
       </body>
     </html>
   );

@@ -1,11 +1,16 @@
-
 import { Magic } from "magic-sdk"
 
-// Initialize the Magic instance
-const API: string = process.env.MAGIC_API
-export const magic = new Magic(API, {
-  network: {
-    rpcUrl: "https://eth-sepolia.g.alchemy.com/v2/demo",
-    chainId: 11155111,
-  },
-})
+
+
+const createMagic = () => {
+
+  const API = process.env.MAGIC_API
+
+if (!API) {
+  throw new Error('MAGIC_API is not defined. Please set it in your environment.');
+}
+
+ return typeof window !== 'undefined' && new Magic(API)
+
+}
+export const magic = createMagic()

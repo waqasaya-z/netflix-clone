@@ -9,7 +9,7 @@ export default async function Home() {
  const adventure =  await getVideos({searchParams: 'adventure'})
  const fantasy =  await getVideos({searchParams: 'fantasy'})
  const popular = await getPopularVideos()
-
+    
   return (
     <main className="h-screen">
       <div className="h-4/5">
