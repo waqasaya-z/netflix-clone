@@ -10,13 +10,13 @@ export default async function Home() {
  const adventure =  await getVideos({searchParams: 'adventure'})
  const fantasy =  await getVideos({searchParams: 'fantasy'})
  const popular = await getPopularVideos()
-    
+  
   return (
-    <main className="h-screen">
-      <div className="h-4/5">
+    <main className="h-screen"  >
+      <div className="h-3/5 ">
         <Banner title="Titanic" image={titanic} />
       </div>
-      <div>
+      <div className="h-5/5">
         <CardList title="Popular" params={popular} />
         <CardList title="Adventure" params={adventure} />
         <CardList title="Comedy" params={comedy} />

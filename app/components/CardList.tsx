@@ -1,7 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 interface YouTubeVideoItem {
+  id: {
+    videoId: string
+  },
   snippet: {
     thumbnails: {
       high: {
@@ -38,8 +42,9 @@ const CardList = async ({title, params} : Props ) => {
         id="slider"
         className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scroll scrollbar-hide"
       >
-        {params.map((item,index) => (
-          <div
+        {params.map((item,index) => ( 
+          
+          <Link href={`/video/${item.id.videoId}`}
             key={index}
             className="card inline-block p-2 bg-base-100 hover:scale-125 ease-in-out duration-300 cursor-pointer"
           >
@@ -52,7 +57,7 @@ const CardList = async ({title, params} : Props ) => {
                 width={300}
               />
             </figure>
-          </div>
+          </Link>
         ))}
       </div>
       <MdChevronRight size={40} />

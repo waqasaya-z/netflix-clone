@@ -9,15 +9,18 @@ interface Params{
 }
 
 interface YouTubeVideoItem {
-    snippet: {
-      thumbnails: {
-        high: {
-          url: string;
-        };
+  id: {
+    videoId: string
+  },
+  snippet: {
+    thumbnails: {
+      high: {
+        url: string;
       };
-      title: string;
     };
-  }
+    title: string;
+  };
+}
 
 export const getData = async ({URL}: Props) : Promise<YouTubeVideoItem[]> => {
     const url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=[YOUR_API_KEY]'

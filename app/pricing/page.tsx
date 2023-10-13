@@ -23,7 +23,6 @@ const ListPrice = () => {
     const { data } = await axios.get('/api/getproducts')
     setPrices(data)
     }
-    console.log(prices)
 
     const priceIds = prices.map(price => price.id);
   
@@ -88,6 +87,7 @@ const ListPrice = () => {
                 z-10
                 overflow-hidden
                 border border-primary border-opacity-20
+                hover:border-red-900
                 shadow-pricing
                 py-10
                 px-8
@@ -427,6 +427,7 @@ const ListPrice = () => {
                 z-10
                 overflow-hidden
                 border border-primary border-opacity-20
+                hover:border-red-900
                 shadow-pricing
                 py-10
                 px-8
@@ -766,6 +767,7 @@ const ListPrice = () => {
                 z-10
                 overflow-hidden
                 border border-primary border-opacity-20
+                hover:border-red-900
                 shadow-pricing
                 py-10
                 px-8
