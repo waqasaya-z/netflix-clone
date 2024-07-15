@@ -8,7 +8,7 @@ interface Params{
     searchParams: string
 }
 
-interface YouTubeVideoItem {
+export interface YouTubeVideoItem {
   id: {
     videoId: string
   },
@@ -23,7 +23,6 @@ interface YouTubeVideoItem {
 }
 
 export const getData = async ({URL}: Props) : Promise<YouTubeVideoItem[]> => {
-    const url = 'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key=[YOUR_API_KEY]'
     const api = process.env.YOUTUBE_API;
     const domainURL = 'https://youtube.googleapis.com/youtube/v3'
     try{

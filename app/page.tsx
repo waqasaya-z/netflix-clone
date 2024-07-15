@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <main className="h-screen"  >
       <div className="h-3/5 ">
-        <Banner title="Titanic" image={titanic} />
+        <Banner title="Titanic" image={titanic} id="F2RnxZnubCM" />
       </div>
       <div className="h-5/5">
         <CardList title="Popular" params={popular} />

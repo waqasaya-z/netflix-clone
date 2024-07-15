@@ -13,6 +13,7 @@ const VideoPage = ({ params }: { params: { id: string } }) => {
       height={500}
       src={embedUrl}
       allowFullScreen
+      rel='0'
       />
     </div>
       </div>
